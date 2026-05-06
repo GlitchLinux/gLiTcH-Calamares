@@ -1,0 +1,15 @@
+--- /dev/fd/63	2026-05-06 13:53:41.478867534 +0200
++++ calamares-3.3.14/src/modules/partition/partition.conf	2026-05-06 13:44:06.420163592 +0200
+@@ -304,6 +304,12 @@
+ lvm:
+     enable: true
+ 
++# Allow loop devices (/dev/loop*) to appear in the device picker.
++# Useful for installing into raw image files attached via losetup.
++# Default: false (loop devices hidden, original Calamares behavior).
++# gLiTcH addition.
++#allowLoopDevices: false
++
+ # Partition layout.
+ #
+ # This optional setting specifies a custom partition layout.

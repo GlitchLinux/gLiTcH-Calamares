@@ -1,0 +1,11 @@
+--- /dev/fd/63	2026-05-06 13:53:41.354867814 +0200
++++ calamares-3.3.14/src/modules/partition/Config.cpp	2026-05-06 13:43:39.956222966 +0200
+@@ -458,6 +458,8 @@
+ 
+     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+     gs->insert( "armInstall", Calamares::getBool( configurationMap, "armInstall", false ) );
++    // gLiTcH: expose loop device scan toggle to DeviceList::getDevices()
++    gs->insert( "allowLoopDevices", Calamares::getBool( configurationMap, "allowLoopDevices", false ) );
+     fillGSConfigurationEFI( gs, configurationMap );
+     fillConfigurationFSTypes( configurationMap );
+ }

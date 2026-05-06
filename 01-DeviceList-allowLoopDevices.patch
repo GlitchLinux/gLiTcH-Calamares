@@ -1,0 +1,29 @@
+--- /dev/fd/63	2026-05-06 13:53:41.230868088 +0200
++++ calamares-3.3.14/src/modules/partition/core/DeviceList.cpp	2026-05-06 13:43:18.176271846 +0200
+@@ -10,6 +10,8 @@
+ 
+ #include "DeviceList.h"
+ 
++#include "GlobalStorage.h"
++#include "JobQueue.h"
+ #include "partition/PartitionIterator.h"
+ #include "utils/Logger.h"
+ #include "utils/System.h"
+@@ -129,7 +131,16 @@
+         cWarning() << "No KPM backend found.";
+         return {};
+     }
+-    DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
++    // gLiTcH: allow loop devices when partition.conf sets allowLoopDevices: true
++    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
++    const bool allowLoop = gs ? gs->value( QStringLiteral( "allowLoopDevices" ) ).toBool() : false;
++    ScanFlags scanFlags = ScanFlag( 0 );
++    if ( allowLoop )
++    {
++        scanFlags |= ScanFlag::includeLoopback;
++        cDebug() << "Loop device scanning enabled (allowLoopDevices=true).";
++    }
++    DeviceList devices = backend->scanDevices( scanFlags );
+ 
+     /* The list of devices is cleaned up for use:
+      *  - some devices can **never** be used (e.g. floppies, nullptr)
