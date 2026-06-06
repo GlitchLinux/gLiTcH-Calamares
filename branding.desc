@@ -1,0 +1,39 @@
+---
+componentName:   debian
+welcomeStyleCalamares: true
+welcomeExpandingLogo: false
+windowExpanding: normal
+windowSize: 650px,500px
+windowPlacement: center
+
+strings:
+    productName:         Glitch GNU/Linux
+    shortProductName:    Glitch
+    version:             13
+    shortVersion:        13
+    versionedName:       Glitch Linux
+    shortVersionedName:  Glitch Linux
+    bootloaderEntryName: Glitch
+    productUrl:          https://glitchlinux.com
+    supportUrl:          https://glitchlinux.com
+    knownIssuesUrl:      https://glitchlinux.com
+    releaseNotesUrl:     https://glitchlinux.com
+    donateUrl:           https://glitchlinux.com
+
+sidebar: widget
+navigation: widget
+
+images:
+    productLogo:         "glitch-mascot/cropped_circle_image.png"
+    productIcon:         "welcome.png"
+    productWelcome:      "welcome.png"
+
+slideshow:               "show.qml"
+
+style:
+   SidebarBackground:    "#303030"
+   SidebarText:          "#FFFFFF"
+   SidebarTextCurrent:   "#FFFFFF"
+   SidebarBackgroundCurrent: "#515151"
+   
+slideshowAPI: 2
